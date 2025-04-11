@@ -95,14 +95,14 @@ function App() {
           <div className="text-slate-700 text-lg leading-relaxed max-h-96 overflow-y-auto">
 
 
-            {/* <p>{data.llmResponse}</p>
-             */}
+             <p>{data.llmResponse}</p>
+             
             <div className="  prose prose-lg max-w-none prose-headings:text-blue-700 prose-li:marker:text-teal-600 prose-strong:text-teal-700 prose-a:text-blue-500">
-              {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>
+               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {data.llmResponse}
-              </ReactMarkdown> */}
+              </ReactMarkdown> 
 
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae culpa impedit repellendus velit ipsa? Et maxime eaque ipsum iste! Eum ipsa vel repudiandae et nobis asperiores libero fuga, velit saepe quos reprehenderit sunt accusantium unde culpa maiores harum aliquam obcaecati totam non? Obcaecati, sint incidunt, fugiat aliquid eum quod iure voluptas voluptatibus quisquam nihil dolore error molestias corporis perspiciatis quidem doloremque quibusdam. Repellendus accusantium illum, porro provident adipisci nobis molestiae labore illo neque possimus corporis omnis quos vel aspernatur consequuntur explicabo. Debitis quas nesciunt at, veritatis vitae non perferendis et, numquam voluptas veniam dignissimos laboriosam consequuntur possimus molestiae fugiat aperiam, velit amet fugit repellendus quam explicabo in iste? Velit distinctio eaque quia! Minima, aut dolor. Animi, et unde. Accusantium, iusto numquam? Molestiae accusantium quibusdam voluptatum, aut, nostrum error temporibus voluptate earum quisquam voluptatibus cumque molestias. Molestias, voluptate placeat laboriosam consequuntur labore cumque saepe consequatur fugiat magnam accusamus nihil rerum eligendi. Delectus esse eaque repellendus aliquam! Quibusdam at quis impedit ipsam iste beatae, repellat, temporibus illo nobis officiis, consectetur aliquam? Soluta ea nostrum repudiandae eligendi quibusdam temporibus ipsa, deserunt voluptates expedita deleniti placeat cumque, laborum cupiditate voluptate vel? Et, porro eum fugiat eos omnis aspernatur similique repellendus! A accusamus fuga iusto!
+              
             </div>
 
 
