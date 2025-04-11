@@ -52,16 +52,54 @@ function App() {
       setData(result);
       setIsLoading(false);
 
-      setTimeout(() => setDoneTyping(true), (result.llmResponse?.length || 0) * 30 + 1000);
+      const delay = (result.llmResponse?.length || 0) * 30 + 1000;
+      setTimeout(() => setDoneTyping(true), delay);
     } catch (err) {
       console.error("Error fetching data:", err);
       setIsLoading(false);
     }
   };
 
+  const renderResponseSection = () => {
+    if (isLoading) {
+      return (
+        <div className="flex justify-center items-center gap-3">
+          <span className="loading loading-ring loading-lg text-teal-600"></span>
+          <span className="loading loading-ring loading-lg text-teal-600"></span>
+          <span className="loading loading-ring loading-lg text-teal-600"></span>
+        </div>
+      );
+    }
+
+    if (!doneTyping && data.llmResponse) {
+      return (
+        <div className="text-blue-800 font-mono text-base">
+          <Typewriter
+            words={[data.llmResponse]}
+            loop={1}
+            cursor
+            cursorStyle="_"
+            typeSpeed={30}
+            deleteSpeed={0}
+            delaySpeed={1000}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div className="text-gray-800 text-base leading-relaxed whitespace-pre-wrap">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {data.llmResponse || "No explanation available."}
+        </ReactMarkdown>
+      </div>
+    );
+  };
+
   return (
     <div className="h-screen bg-slate-50 p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Form Section */}
         <div className="bg-white p-10 rounded-3xl shadow-lg border">
           <h2 className="text-2xl font-bold text-teal-600 mb-6">🧬 Liver Disease Detection</h2>
           <div className="grid grid-cols-2 gap-4">
@@ -82,43 +120,20 @@ function App() {
           </button>
         </div>
 
+        {/* Response Section */}
         <div className="bg-white p-10 rounded-3xl shadow-lg border overflow-y-auto max-h-[80vh]">
           <h2 className="text-2xl font-bold text-blue-600 mb-4"> 🤖 LLM Response</h2>
 
           <div className="flex justify-between items-center mb-4">
             <p className="text-lg font-semibold text-green-700">
-              Prediction: {data.prediction}
+              Prediction: {data.prediction || "—"}
             </p>
             <p className="text-lg font-semibold text-cyan-700">
-              Probability: {data.probability}%
+              Probability: {data.probability ? `${data.probability}%` : "—"}
             </p>
           </div>
 
-          {isLoading ? (
-            <div className="flex justify-center items-center gap-3">
-              <span className="loading loading-ring loading-lg"></span>
-              <span className="loading loading-ring loading-lg"></span>
-              <span className="loading loading-ring loading-lg"></span>
-            </div>
-          ) : !doneTyping ? (
-            <div className="text-blue-800 font-mono text-base">
-              <Typewriter
-                words={[data.llmResponse || ""]}
-                loop={1}
-                cursor
-                cursorStyle="_"
-                typeSpeed={30}
-                deleteSpeed={0}
-                delaySpeed={1000}
-              />
-            </div>
-          ) : (
-            <div className="text-gray-800 text-base leading-relaxed whitespace-pre-wrap">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {data.llmResponse || "No explanation available."}
-              </ReactMarkdown>
-            </div>
-          )}
+          {renderResponseSection()}
         </div>
       </div>
     </div>
