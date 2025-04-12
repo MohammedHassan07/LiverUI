@@ -52,8 +52,11 @@ function App() {
       setData(result);
       setIsLoading(false);
 
+      console.log(result.prediction)
+
       const delay = (result.llmResponse?.length || 0) * 30 + 1000;
       setTimeout(() => setDoneTyping(true), delay);
+
     } catch (err) {
       console.error("Error fetching data:", err);
       setIsLoading(false);
@@ -126,7 +129,7 @@ function App() {
 
           <div className="flex justify-between items-center mb-4">
             <p className="text-lg font-semibold text-green-700">
-              Prediction: {data.prediction || "—"}
+              Prediction: {data.prediction}
             </p>
             <p className="text-lg font-semibold text-cyan-700">
               Probability: {data.probability ? `${data.probability}%` : "—"}
